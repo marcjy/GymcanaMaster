@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">GymcanaMaster</string>
+    <string name="app_name">Gymcana Master</string>
+
+
+    <!-- [MN] MAIN MENU -->
+    <string name="mn_friends_button">Friends!</string>
+    <string name="mn_start_button">Start</string>
+    <string name="mn_games_button">Games</string>
+
 </resources>

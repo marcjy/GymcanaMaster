@@ -99,7 +99,7 @@ private val darkScheme = darkColorScheme(
 @Composable
 fun GymcanaMasterTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
@@ -113,6 +113,7 @@ fun GymcanaMasterTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
+        shapes = Shapes,
         typography = AppTypography
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
