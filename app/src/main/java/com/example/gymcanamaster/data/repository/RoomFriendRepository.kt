@@ -1,0 +1,14 @@
+package com.example.gymcanamaster.data.repository
+
+import com.example.gymcanamaster.data.room.friend.FriendDao
+import com.example.gymcanamaster.data.room.friend.FriendEntity
+import kotlinx.coroutines.flow.Flow
+
+class RoomFriendRepository(private val friendDao: FriendDao) : FriendRepository {
+
+    override suspend fun createFriend(friend: FriendEntity) = friendDao.insert(friend)
+    override suspend fun deleteFriend(friend: FriendEntity) = friendDao.delete(friend)
+    override suspend fun updateFriend(friend: FriendEntity) = friendDao.update(friend)
+
+    override fun getAllFriends(): Flow<List<FriendEntity>> = friendDao.getAll()
+}
