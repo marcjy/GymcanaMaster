@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.gymcanamaster.data.room.friend.FriendDao
 import com.example.gymcanamaster.data.room.friend.FriendEntity
+import com.example.gymcanamaster.data.room.team.TeamDao
 
 /**
  * Database class with a singleton Instance object.
@@ -14,6 +15,7 @@ import com.example.gymcanamaster.data.room.friend.FriendEntity
 abstract class GymcanaDatabase : RoomDatabase() {
 
     abstract fun friendDao(): FriendDao
+    abstract fun teamDao(): TeamDao
 
     companion object {
         @Volatile
