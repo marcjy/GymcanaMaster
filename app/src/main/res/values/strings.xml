@@ -7,4 +7,13 @@
     <string name="mn_start_button">Start</string>
     <string name="mn_games_button">Games</string>
 
+    <!-- [F] FRIENDS SCREEN -->
+    <string name="f_friend_playing_switch">Playing</string>
+    <string name="f_friend_not_playing_switch">Not Playing</string>
+    <string name="f_title_friends_screen">Your friends!</string>
+
+    <string name="f_label_add_friend_text_field">Friend name…</string>
+    <string name="f_confirm_friend_button">Confirm</string>
+    <string name="f_cancel_friend_button">Cancel</string>
+
 </resources>

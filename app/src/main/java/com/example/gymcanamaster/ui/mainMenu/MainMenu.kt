@@ -70,11 +70,7 @@ private fun GymcanaTopAppBar(modifier: Modifier = Modifier){
                 )
         },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = Color.Transparent,
-            scrolledContainerColor = Color.Unspecified,
-            navigationIconContentColor = Color.Unspecified,
-            titleContentColor = Color.Unspecified,
-            actionIconContentColor = Color.Unspecified
+            containerColor = Color.Transparent
         ),
         modifier = modifier
     )
