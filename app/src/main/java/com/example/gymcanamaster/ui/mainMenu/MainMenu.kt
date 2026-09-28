@@ -34,7 +34,21 @@ import com.example.gymcanamaster.ui.theme.GymcanaMasterTheme
 
 
 @Composable
-fun MainMenuScreen(modifier : Modifier = Modifier){
+fun MainMenu(
+    onNavigateToFriends : () -> Unit,
+    modifier : Modifier = Modifier
+){
+    MainMenuContent(
+        onNavigateToFriends = onNavigateToFriends,
+        modifier = modifier
+    )
+}
+
+@Composable
+fun MainMenuContent(
+    onNavigateToFriends : () -> Unit,
+    modifier : Modifier = Modifier
+){
     Scaffold(
         modifier = modifier.fillMaxSize(),
         containerColor = Color.Transparent,
@@ -49,13 +63,14 @@ fun MainMenuScreen(modifier : Modifier = Modifier){
         ) {
 
             Spacer(Modifier.height(72.dp))
-            FriendsButton()
+            FriendsButton(
+                onNavigateToFriends = onNavigateToFriends
+            )
             Spacer(Modifier.height(48.dp))
             MenuButtons()
         }
     }
 }
-
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -77,9 +92,12 @@ private fun GymcanaTopAppBar(modifier: Modifier = Modifier){
 }
 
 @Composable
-private fun FriendsButton(modifier: Modifier = Modifier){
+private fun FriendsButton(
+    onNavigateToFriends : () -> Unit,
+    modifier: Modifier = Modifier
+) {
     Button(
-        onClick = { /*TODO*/ },
+        onClick = { onNavigateToFriends() },
         shape = CircleShape,
         contentPadding = PaddingValues(0.dp),
         modifier = modifier
@@ -157,7 +175,7 @@ private fun GamesButton(modifier: Modifier = Modifier){
 @Composable
 fun MainMenuPreviewDark() {
     GymcanaMasterTheme() {
-        MainMenuScreen()
+        MainMenuContent({})
     }
 }
 
@@ -168,6 +186,6 @@ fun MainMenuPreviewDark() {
 @Composable
 fun MainMenuPreview() {
     GymcanaMasterTheme() {
-        MainMenuScreen()
+        MainMenuContent({})
     }
 }
