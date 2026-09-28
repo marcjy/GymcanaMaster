@@ -14,6 +14,13 @@ object AppViewModelProvider {
                 friendRepository = gymcanaMasterApplication().container.friendRepository
             )
         }
+
+    //TODO: Add TeamViewModel
+//        initializer {
+//            TeamViewModel(
+//                teamRepository = gymcanaMasterApplication().container.teamRepository
+//            )
+//        }
     }
 }
 
