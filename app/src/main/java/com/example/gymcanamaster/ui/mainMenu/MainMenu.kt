@@ -36,10 +36,12 @@ import com.example.gymcanamaster.ui.theme.GymcanaMasterTheme
 @Composable
 fun MainMenu(
     onNavigateToFriends : () -> Unit,
+    onNavigateToTeams : () -> Unit,
     modifier : Modifier = Modifier
 ){
     MainMenuContent(
         onNavigateToFriends = onNavigateToFriends,
+        onNavigateToTeams = onNavigateToTeams,
         modifier = modifier
     )
 }
@@ -47,6 +49,7 @@ fun MainMenu(
 @Composable
 fun MainMenuContent(
     onNavigateToFriends : () -> Unit,
+    onNavigateToTeams : () -> Unit,
     modifier : Modifier = Modifier
 ){
     Scaffold(
@@ -67,7 +70,9 @@ fun MainMenuContent(
                 onNavigateToFriends = onNavigateToFriends
             )
             Spacer(Modifier.height(48.dp))
-            MenuButtons()
+            MenuButtons(
+                onNavigateToTeams = onNavigateToTeams
+            )
         }
     }
 }
@@ -124,21 +129,29 @@ private fun FriendsButton(
 }
 
 @Composable
-private fun MenuButtons(modifier: Modifier = Modifier){
+private fun MenuButtons(
+    onNavigateToTeams : () -> Unit,
+    modifier: Modifier = Modifier
+){
     Column(
         modifier = modifier
             .padding(dimensionResource(R.dimen.medium_padding)),
         verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.medium_padding))
     ) {
-        StartButton()
+        StartButton(
+            onNavigateToTeams = onNavigateToTeams
+        )
         GamesButton()
     }
 }
 
 @Composable
-private fun StartButton(modifier: Modifier = Modifier){
+private fun StartButton(
+    onNavigateToTeams : () -> Unit,
+    modifier: Modifier = Modifier
+){
     Button(
-        onClick = { /*TODO*/ },
+        onClick = {onNavigateToTeams() },
         shape = RectangleShape,
         modifier = modifier
             .fillMaxWidth(),
@@ -175,7 +188,10 @@ private fun GamesButton(modifier: Modifier = Modifier){
 @Composable
 fun MainMenuPreviewDark() {
     GymcanaMasterTheme() {
-        MainMenuContent({})
+        MainMenuContent(
+            onNavigateToFriends = {},
+            onNavigateToTeams = {}
+        )
     }
 }
 
@@ -186,6 +202,9 @@ fun MainMenuPreviewDark() {
 @Composable
 fun MainMenuPreview() {
     GymcanaMasterTheme() {
-        MainMenuContent({})
+        MainMenuContent(
+            onNavigateToFriends = {},
+            onNavigateToTeams = {}
+        )
     }
 }

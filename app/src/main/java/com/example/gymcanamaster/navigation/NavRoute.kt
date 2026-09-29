@@ -9,4 +9,7 @@ sealed interface NavRoute {
 
     @Serializable
     data object FriendsScreen : NavRoute
+
+    @Serializable
+    data object TeamsScreen : NavRoute
 }
