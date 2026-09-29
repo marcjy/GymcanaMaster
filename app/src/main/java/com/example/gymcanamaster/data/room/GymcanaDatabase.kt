@@ -7,11 +7,19 @@ import androidx.room.RoomDatabase
 import com.example.gymcanamaster.data.room.friend.FriendDao
 import com.example.gymcanamaster.data.room.friend.FriendEntity
 import com.example.gymcanamaster.data.room.team.TeamDao
+import com.example.gymcanamaster.data.room.team.TeamEntity
 
 /**
  * Database class with a singleton Instance object.
  */
-@Database(entities = [FriendEntity::class], version = 1, exportSchema = false)
+@Database(
+    entities = [
+        FriendEntity::class,
+        TeamEntity::class
+    ],
+    version = 2,
+    exportSchema = false
+)
 abstract class GymcanaDatabase : RoomDatabase() {
 
     abstract fun friendDao(): FriendDao
@@ -25,6 +33,7 @@ abstract class GymcanaDatabase : RoomDatabase() {
             // if the Instance is not null, return it, otherwise create a new database instance.
             return Instance ?: synchronized(this) {
                 Room.databaseBuilder(context, GymcanaDatabase::class.java, "item_database")
+                    .fallbackToDestructiveMigration(true)
                     .build()
                     .also { Instance = it }
             }

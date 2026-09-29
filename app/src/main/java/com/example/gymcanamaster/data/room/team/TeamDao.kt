@@ -5,7 +5,9 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Update
+import com.example.gymcanamaster.data.room.TeamWithFriends
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -22,4 +24,9 @@ interface TeamDao {
 
     @Query("SELECT * FROM teams ORDER BY name ASC")
     fun getAll(): Flow<List<TeamEntity>>
+
+    @Transaction
+    @Query("SELECT * FROM teams")
+    fun getAllTeamsWithFriends(): Flow<List<TeamWithFriends>>
+
 }

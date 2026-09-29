@@ -1,8 +1,8 @@
 package com.example.gymcanamaster.data
 
 import android.content.Context
-import com.example.gymcanamaster.data.repository.FriendRepository
-import com.example.gymcanamaster.data.repository.RoomFriendRepository
+import com.example.gymcanamaster.data.repository.friend.FriendRepository
+import com.example.gymcanamaster.data.repository.friend.RoomFriendRepository
 import com.example.gymcanamaster.data.repository.team.RoomTeamRepository
 import com.example.gymcanamaster.data.repository.team.TeamRepository
 import com.example.gymcanamaster.data.room.GymcanaDatabase
