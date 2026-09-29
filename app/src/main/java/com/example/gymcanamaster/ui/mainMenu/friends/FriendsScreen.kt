@@ -10,45 +10,31 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
-import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.gymcanamaster.R
 import com.example.gymcanamaster.data.AppViewModelProvider
 import com.example.gymcanamaster.data.room.friend.FriendEntity
+import com.example.gymcanamaster.ui.AddFloatingActionButton
+import com.example.gymcanamaster.ui.EditIconButton
+import com.example.gymcanamaster.ui.InputTextDialog
+import com.example.gymcanamaster.ui.RemovePersonIconButton
+import com.example.gymcanamaster.ui.TransparentTopAppVBar
 import com.example.gymcanamaster.ui.theme.GymcanaMasterTheme
 
 
@@ -94,8 +80,9 @@ fun FriendsScreenContent(
     modifier: Modifier = Modifier
 ) {
     Scaffold(
-        topBar = {TopFriendBar()},
+        topBar = { TransparentTopAppVBar(R.string.f_title_friends_screen) },
         containerColor = Color.Transparent,
+        floatingActionButton = { AddFloatingActionButton(onClick = { onDisplayAddFriendDialog() }) },
         modifier = modifier
     ) { innerPadding ->
 
@@ -123,17 +110,6 @@ fun FriendsScreenContent(
                 }
             }
 
-            FloatingActionButton(
-                onClick = { onDisplayAddFriendDialog()},
-                modifier = Modifier
-                    .padding(dimensionResource(R.dimen.medium_padding))
-            ) {
-                Icon(
-                    painterResource(R.drawable.add_friend_icon),
-                    contentDescription = null
-                )
-            }
-
             if(uiState.isAddFriendDialogVisible){
                 AddFriendDialog(
                     onAdd = { newFriendName ->
@@ -154,33 +130,6 @@ fun FriendsScreenContent(
             }
         }
     }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun TopFriendBar(modifier: Modifier = Modifier) {
-    CenterAlignedTopAppBar(
-        title = {
-            Surface(
-                color = MaterialTheme.colorScheme.surface,
-                shape = RoundedCornerShape(16.dp)
-            ) {
-                Text(
-                    text = stringResource(R.string.f_title_friends_screen),
-                    style = MaterialTheme.typography.titleLarge,
-                    modifier = Modifier
-                        .padding(
-                            horizontal = dimensionResource(R.dimen.huge_padding),
-                            vertical = dimensionResource(R.dimen.small_padding)
-                        )
-                )
-            }
-        },
-        colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = Color.Transparent
-        ),
-        modifier = modifier
-    )
 }
 
 @Composable
@@ -242,97 +191,10 @@ private fun FriendCard(
                 )
             }
 
-
             Spacer(modifier = Modifier.weight(1.0f))
+            EditIconButton(onClick = { onEditFriend(friend) })
+            RemovePersonIconButton(onClick = { onDeleteFriend(friend) })
 
-            IconButton(
-                onClick = { onEditFriend(friend) }
-            ) {
-                Icon(
-                    painterResource(R.drawable.edit_icon),
-                    contentDescription = null
-                )
-            }
-
-            IconButton(
-                onClick = { onDeleteFriend(friend) }
-            ) {
-                Icon(
-                    painterResource(R.drawable.remove_friend_icon),
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.error
-                )
-            }
-        }
-    }
-}
-
-
-@Composable
-private fun FriendInputDialog(
-    initialName: String,
-    onConfirm: (String) -> Unit,
-    onDismiss: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    var friendName by remember { mutableStateOf(initialName) }
-
-    Dialog(
-        onDismissRequest = onDismiss
-    ) {
-        Surface(
-            modifier = modifier,
-            shape = RoundedCornerShape(16.dp)
-        ) {
-            Column(
-                verticalArrangement = Arrangement.Center,
-                modifier = Modifier
-                    .padding(dimensionResource(R.dimen.big_padding))
-            ) {
-                OutlinedTextField(
-                    value = friendName,
-                    onValueChange = { friendName = it },
-                    singleLine = true,
-                    keyboardOptions = KeyboardOptions(
-                        imeAction = ImeAction.Done
-                    ),
-                    label = {
-                        Text(
-                            text = stringResource(R.string.f_label_add_friend_text_field),
-                            style = MaterialTheme.typography.labelLarge
-                        )
-                    },
-                    modifier = Modifier.fillMaxWidth()
-                )
-
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_padding)),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = dimensionResource(R.dimen.big_padding))
-                ) {
-                    OutlinedButton(
-                        onClick = onDismiss,
-                        modifier = Modifier.weight(1.0f)
-                    ) {
-                        Text(
-                            text = stringResource(R.string.f_cancel_friend_button),
-                            style = MaterialTheme.typography.bodyMedium
-                        )
-                    }
-
-                    Button(
-                        onClick = { onConfirm(friendName) },
-                        enabled = friendName.isNotBlank(),
-                        modifier = Modifier.weight(1.0f)
-                    ) {
-                        Text(
-                            text = stringResource(R.string.f_confirm_friend_button),
-                            style = MaterialTheme.typography.bodyMedium
-                        )
-                    }
-                }
-            }
         }
     }
 }
@@ -343,8 +205,9 @@ private fun AddFriendDialog(
     onDismiss : () -> Unit,
     modifier : Modifier = Modifier
 ){
-    FriendInputDialog(
-        initialName = "",
+    InputTextDialog(
+        initialText = "",
+        textFieldLabelResId = R.string.f_label_add_friend_text_field,
         onConfirm = onAdd,
         onDismiss = onDismiss,
         modifier = modifier
@@ -358,8 +221,9 @@ private  fun EditFriendDialog(
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier
 ){
-    FriendInputDialog(
-        initialName = currentName,
+    InputTextDialog(
+        initialText = currentName,
+        textFieldLabelResId = R.string.f_label_add_friend_text_field,
         onConfirm = onConfirm,
         onDismiss = onDismiss,
         modifier = modifier
@@ -426,7 +290,7 @@ private fun FriendsScreenAddDialogPreview() {
         FriendsScreenContent(
             uiState = FriendUiState(
                 friendList = emptyList(),
-                isAddFriendDialogVisible = true // Preview the open dialog!
+                isAddFriendDialogVisible = true
             ),
             onDisplayAddFriendDialog = {},
             onAddNewFriend = {},
