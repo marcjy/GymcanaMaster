@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--Padding-->
     <dimen name="small_padding">8dp</dimen>
     <dimen name="medium_padding">16dp</dimen>
     <dimen name="big_padding">32dp</dimen>
     <dimen name="huge_padding">64dp</dimen>
+
+
+    <!--Other-->
+    <dimen name="min_height_team_members_column">64dp</dimen>
 </resources>

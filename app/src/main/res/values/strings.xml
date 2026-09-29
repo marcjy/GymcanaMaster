@@ -16,4 +16,9 @@
     <string name="f_confirm_friend_button">Confirm</string>
     <string name="f_cancel_friend_button">Cancel</string>
 
+    <!-- [T] TEAMS SCREEN -->
+    <string name="t_title_teams_screen">Teams</string>
+    <string name="t_title_add_friends_to_team_dialog">Adding friends to:</string>
+    <string name="t_label_add_team_text_field">Team name…</string>
+
 </resources>
