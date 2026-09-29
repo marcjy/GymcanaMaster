@@ -2,7 +2,7 @@ package com.example.gymcanamaster.ui.mainMenu.friends
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.gymcanamaster.data.repository.FriendRepository
+import com.example.gymcanamaster.data.repository.friend.FriendRepository
 import com.example.gymcanamaster.data.room.friend.FriendEntity
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted

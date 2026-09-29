@@ -20,6 +20,9 @@ interface FriendDao{
     @Update
     suspend fun update(friend: FriendEntity)
 
+    @Query("UPDATE friends SET teamId = :teamId WHERE id IN (:friendIds)")
+    suspend fun addFriendsToTeam(teamId : Int, friendIds : List<Int>)
+
     @Query("SELECT * FROM friends ORDER BY name ASC")
     fun getAll(): Flow<List<FriendEntity>>
 }
