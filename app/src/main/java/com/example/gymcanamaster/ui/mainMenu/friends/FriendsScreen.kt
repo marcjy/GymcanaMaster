@@ -4,7 +4,6 @@ import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -24,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -147,13 +147,16 @@ private fun FriendCard(
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center,
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(
                 modifier = Modifier
-                    .padding(dimensionResource(R.dimen.medium_padding)),
+                    .padding(dimensionResource(R.dimen.medium_padding))
+                    .weight(1.0f),
                 text = friend.name,
-                style = MaterialTheme.typography.bodyLarge
+                style = MaterialTheme.typography.bodyLarge,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
             )
 
             SingleChoiceSegmentedButtonRow(
@@ -191,7 +194,6 @@ private fun FriendCard(
                 )
             }
 
-            Spacer(modifier = Modifier.weight(1.0f))
             EditIconButton(onClick = { onEditFriend(friend) })
             RemovePersonIconButton(onClick = { onDeleteFriend(friend) })
 

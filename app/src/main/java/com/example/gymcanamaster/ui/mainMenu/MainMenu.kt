@@ -35,21 +35,21 @@ import com.example.gymcanamaster.ui.theme.GymcanaMasterTheme
 
 @Composable
 fun MainMenu(
-    onNavigateToFriends : () -> Unit,
-    onNavigateToTeams : () -> Unit,
+    onNavigateToFriendsAndTeams : () -> Unit,
+    onNavigateToStart: () -> Unit,
     modifier : Modifier = Modifier
 ){
     MainMenuContent(
-        onNavigateToFriends = onNavigateToFriends,
-        onNavigateToTeams = onNavigateToTeams,
+        onNavigateToFriendsAndTeams = onNavigateToFriendsAndTeams,
+        onNavigateToStart = onNavigateToStart,
         modifier = modifier
     )
 }
 
 @Composable
 fun MainMenuContent(
-    onNavigateToFriends : () -> Unit,
-    onNavigateToTeams : () -> Unit,
+    onNavigateToFriendsAndTeams : () -> Unit,
+    onNavigateToStart: () -> Unit,
     modifier : Modifier = Modifier
 ){
     Scaffold(
@@ -67,11 +67,11 @@ fun MainMenuContent(
 
             Spacer(Modifier.height(72.dp))
             FriendsButton(
-                onNavigateToFriends = onNavigateToFriends
+                onNavigateToFriends = onNavigateToFriendsAndTeams
             )
             Spacer(Modifier.height(48.dp))
             MenuButtons(
-                onNavigateToTeams = onNavigateToTeams
+                onNavigateToStart = onNavigateToStart
             )
         }
     }
@@ -115,7 +115,7 @@ private fun FriendsButton(
                 .fillMaxSize()
         ) {
             Icon(
-                painter = painterResource(R.drawable.friends_button),
+                painter = painterResource(R.drawable.team_icon),
                 contentDescription = null,
                 modifier = Modifier.size(54.dp)
             )
@@ -130,7 +130,7 @@ private fun FriendsButton(
 
 @Composable
 private fun MenuButtons(
-    onNavigateToTeams : () -> Unit,
+    onNavigateToStart : () -> Unit,
     modifier: Modifier = Modifier
 ){
     Column(
@@ -139,7 +139,7 @@ private fun MenuButtons(
         verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.medium_padding))
     ) {
         StartButton(
-            onNavigateToTeams = onNavigateToTeams
+            onNavigateToTeams = onNavigateToStart
         )
         GamesButton()
     }
@@ -189,8 +189,8 @@ private fun GamesButton(modifier: Modifier = Modifier){
 fun MainMenuPreviewDark() {
     GymcanaMasterTheme() {
         MainMenuContent(
-            onNavigateToFriends = {},
-            onNavigateToTeams = {}
+            onNavigateToFriendsAndTeams = { },
+            onNavigateToStart = {}
         )
     }
 }
@@ -203,8 +203,8 @@ fun MainMenuPreviewDark() {
 fun MainMenuPreview() {
     GymcanaMasterTheme() {
         MainMenuContent(
-            onNavigateToFriends = {},
-            onNavigateToTeams = {}
+            onNavigateToFriendsAndTeams = { },
+            onNavigateToStart = {}
         )
     }
 }

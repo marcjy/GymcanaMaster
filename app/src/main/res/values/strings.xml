@@ -21,4 +21,8 @@
     <string name="t_title_add_friends_to_team_dialog">Adding friends to:</string>
     <string name="t_label_add_team_text_field">Team name…</string>
 
+    <!--[FT] FRIENDS AND TEAMS SCREEN -->
+    <string name="ft_label_friends">Friends</string>
+    <string name="ft_label_teams">Teams</string>
+
 </resources>

@@ -8,8 +8,9 @@ sealed interface NavRoute {
     data object MainMenu : NavRoute
 
     @Serializable
+    data object FriendsAndTeamsScreen : NavRoute
+    @Serializable
     data object FriendsScreen : NavRoute
-
     @Serializable
     data object TeamsScreen : NavRoute
 }

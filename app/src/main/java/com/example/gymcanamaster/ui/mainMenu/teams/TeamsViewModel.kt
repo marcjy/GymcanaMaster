@@ -1,4 +1,4 @@
-package com.example.gymcanamaster.ui.teams
+package com.example.gymcanamaster.ui.mainMenu.teams
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

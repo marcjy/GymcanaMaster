@@ -6,7 +6,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.gymcanamaster.GymcanaMasterApplication
 import com.example.gymcanamaster.ui.mainMenu.friends.FriendsViewModel
-import com.example.gymcanamaster.ui.teams.TeamsViewModel
+import com.example.gymcanamaster.ui.mainMenu.teams.TeamsViewModel
 
 object AppViewModelProvider {
     val Factory = viewModelFactory {

@@ -7,8 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.gymcanamaster.ui.mainMenu.MainMenu
-import com.example.gymcanamaster.ui.mainMenu.friends.FriendsScreen
-import com.example.gymcanamaster.ui.teams.TeamsScreen
+import com.example.gymcanamaster.ui.mainMenu.friendsAndTeams.FriendsAndTeamsScreen
 
 @Composable
 fun AppNavigation(
@@ -22,22 +21,15 @@ fun AppNavigation(
     ){
         composable<NavRoute.MainMenu>{
             MainMenu(
-                onNavigateToFriends = {
-                    navController.navigate(NavRoute.FriendsScreen)
+                onNavigateToFriendsAndTeams = {
+                    navController.navigate(NavRoute.FriendsAndTeamsScreen)
                 },
-                onNavigateToTeams = {
-                    navController.navigate(NavRoute.TeamsScreen)
-                }
+                onNavigateToStart = {} //TODO
             )
         }
 
-        composable<NavRoute.FriendsScreen> {
-            FriendsScreen()
-        }
-
-
-        composable<NavRoute.TeamsScreen> {
-            TeamsScreen()
+        composable<NavRoute.FriendsAndTeamsScreen> {
+            FriendsAndTeamsScreen()
         }
     }
 

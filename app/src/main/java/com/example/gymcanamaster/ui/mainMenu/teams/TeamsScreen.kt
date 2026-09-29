@@ -1,4 +1,4 @@
-package com.example.gymcanamaster.ui.teams
+package com.example.gymcanamaster.ui.mainMenu.teams
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
