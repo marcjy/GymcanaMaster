@@ -1,5 +1,6 @@
 package com.example.gymcanamaster.ui
 
+import android.content.res.Configuration
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,15 +26,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.example.gymcanamaster.R
+import com.example.gymcanamaster.ui.theme.GymcanaMasterTheme
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -50,7 +54,7 @@ fun TransparentTopAppVBar(
 
                 Text(
                     text = stringResource(titleResId),
-                    style = MaterialTheme.typography.displaySmall,
+                    style = MaterialTheme.typography.headlineSmall,
                     color = MaterialTheme.colorScheme.onSurface,
                     modifier = Modifier
                         .padding(
@@ -215,5 +219,74 @@ fun AddFloatingActionButton(
             painterResource(R.drawable.add_icon),
             contentDescription = null
         )
+    }
+}
+
+@Composable
+fun GameBottomNavigationBar(
+    currentGameIndex : Int,
+    maxGameIndex : Int,
+    isNextButtonEnabled : Boolean,
+    onNavigateToPreviousGame : () -> Unit,
+    onNavigateToNextGame : () -> Unit,
+
+    modifier: Modifier = Modifier
+) {
+    Surface(
+        tonalElevation = 3.dp,
+        shadowElevation = 8.dp,
+        modifier = modifier
+            .fillMaxWidth()
+    ){
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(dimensionResource(R.dimen.medium_padding))
+        ) {
+            OutlinedButton(
+                enabled = currentGameIndex != 0,
+                onClick = onNavigateToPreviousGame,
+                modifier = Modifier.weight(1.0f)
+            ) {
+                Text(
+                    text = stringResource(R.string.g_previous_game_button_text),
+                    style = MaterialTheme.typography.titleSmall
+                )
+            }
+
+
+            Text(
+                text = "${currentGameIndex + 1}/${maxGameIndex + 1}",
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier
+                    .padding(horizontal = dimensionResource(R.dimen.medium_padding))
+            )
+
+            Button(
+                onClick = onNavigateToNextGame,
+                enabled = isNextButtonEnabled,
+                modifier = Modifier.weight(1.0f)
+            ) {
+                Text(
+                    text = if (currentGameIndex != maxGameIndex)
+                        stringResource(R.string.g_next_game_button_text)
+                    else
+                        stringResource(R.string.g_finish_game_button_text),
+                    style = MaterialTheme.typography.titleSmall
+                )
+            }
+        }
+    }
+}
+
+@Preview(showSystemUi = true, showBackground = true,
+    uiMode = Configuration.UI_MODE_NIGHT_YES or Configuration.UI_MODE_TYPE_NORMAL
+)
+@Composable private fun TopAppBarPreview(){
+    GymcanaMasterTheme {
+        TransparentTopAppVBar(R.string.g_game_title_chopstick_transfer)
     }
 }
