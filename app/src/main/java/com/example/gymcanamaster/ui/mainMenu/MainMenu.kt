@@ -64,7 +64,6 @@ fun MainMenuContent(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_padding))
         ) {
-
             Spacer(Modifier.height(72.dp))
             FriendsButton(
                 onNavigateToFriends = onNavigateToFriendsAndTeams
@@ -76,7 +75,6 @@ fun MainMenuContent(
         }
     }
 }
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -139,7 +137,7 @@ private fun MenuButtons(
         verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.medium_padding))
     ) {
         StartButton(
-            onNavigateToTeams = onNavigateToStart
+            onNavigateToStart = onNavigateToStart
         )
         GamesButton()
     }
@@ -147,11 +145,11 @@ private fun MenuButtons(
 
 @Composable
 private fun StartButton(
-    onNavigateToTeams : () -> Unit,
+    onNavigateToStart : () -> Unit,
     modifier: Modifier = Modifier
 ){
     Button(
-        onClick = {onNavigateToTeams() },
+        onClick = {onNavigateToStart() },
         shape = RectangleShape,
         modifier = modifier
             .fillMaxWidth(),
