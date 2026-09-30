@@ -3,6 +3,8 @@ package com.example.gymcanamaster.data
 import android.content.Context
 import com.example.gymcanamaster.data.repository.friend.FriendRepository
 import com.example.gymcanamaster.data.repository.friend.RoomFriendRepository
+import com.example.gymcanamaster.data.repository.gymcanaRanking.GymcanaRankingRepository
+import com.example.gymcanamaster.data.repository.gymcanaRanking.RoomGymcanaRankingRepository
 import com.example.gymcanamaster.data.repository.team.RoomTeamRepository
 import com.example.gymcanamaster.data.repository.team.TeamRepository
 import com.example.gymcanamaster.data.room.GymcanaDatabase
@@ -11,6 +13,7 @@ import com.example.gymcanamaster.data.room.GymcanaDatabase
 interface AppContainer{
     val friendRepository: FriendRepository
     val teamRepository : TeamRepository
+    val gymcanaRankingRepository : GymcanaRankingRepository
 }
 
 class AppDataContainer(private val context: Context) : AppContainer {
@@ -21,5 +24,9 @@ class AppDataContainer(private val context: Context) : AppContainer {
 
     override val teamRepository: TeamRepository by lazy {
         RoomTeamRepository(GymcanaDatabase.getDatabase(context).teamDao())
+    }
+
+    override val gymcanaRankingRepository: GymcanaRankingRepository by lazy {
+        RoomGymcanaRankingRepository(GymcanaDatabase.getDatabase(context).gymcanaRankingDao())
     }
 }
