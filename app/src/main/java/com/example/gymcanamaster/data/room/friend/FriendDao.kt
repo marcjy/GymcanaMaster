@@ -19,6 +19,8 @@ interface FriendDao{
 
     @Update
     suspend fun update(friend: FriendEntity)
+    @Update
+    suspend fun update(friends: List<FriendEntity>)
 
     @Query("UPDATE friends SET teamId = :teamId WHERE id IN (:friendIds)")
     suspend fun addFriendsToTeam(teamId : Int, friendIds : List<Int>)

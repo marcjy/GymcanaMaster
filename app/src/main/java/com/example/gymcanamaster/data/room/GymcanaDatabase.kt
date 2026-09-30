@@ -6,6 +6,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.gymcanamaster.data.room.friend.FriendDao
 import com.example.gymcanamaster.data.room.friend.FriendEntity
+import com.example.gymcanamaster.data.room.gymcanaRanking.GymcanaRankingDao
+import com.example.gymcanamaster.data.room.gymcanaRanking.GymcanaRankingEntity
 import com.example.gymcanamaster.data.room.team.TeamDao
 import com.example.gymcanamaster.data.room.team.TeamEntity
 
@@ -15,15 +17,17 @@ import com.example.gymcanamaster.data.room.team.TeamEntity
 @Database(
     entities = [
         FriendEntity::class,
-        TeamEntity::class
+        TeamEntity::class,
+        GymcanaRankingEntity::class
     ],
-    version = 2,
+    version = 4,
     exportSchema = false
 )
 abstract class GymcanaDatabase : RoomDatabase() {
 
     abstract fun friendDao(): FriendDao
     abstract fun teamDao(): TeamDao
+    abstract fun gymcanaRankingDao(): GymcanaRankingDao
 
     companion object {
         @Volatile
