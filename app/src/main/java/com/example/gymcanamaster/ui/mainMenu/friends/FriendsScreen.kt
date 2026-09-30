@@ -3,6 +3,7 @@ package com.example.gymcanamaster.ui.mainMenu.friends
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -93,6 +94,7 @@ fun FriendsScreenContent(
                 .fillMaxSize()
         ) {
             LazyColumn(
+                contentPadding = PaddingValues(bottom = dimensionResource(R.dimen.fab_content_bottom_padding)),
                 verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_padding)),
                 modifier = Modifier
                     .weight(1.0f)
@@ -131,7 +133,6 @@ fun FriendsScreenContent(
         }
     }
 }
-
 @Composable
 private fun FriendCard(
     friend: FriendEntity,
@@ -154,23 +155,27 @@ private fun FriendCard(
                     .padding(dimensionResource(R.dimen.medium_padding))
                     .weight(1.0f),
                 text = friend.name,
-                style = MaterialTheme.typography.bodyLarge,
+                style = MaterialTheme.typography.bodySmall,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
 
             SingleChoiceSegmentedButtonRow(
                 modifier = Modifier
-                    .padding(dimensionResource(R.dimen.small_padding))
+                    .padding(vertical = dimensionResource(R.dimen.small_padding))
             ) {
                 SegmentedButton(
                     shape = SegmentedButtonDefaults.itemShape(index = 0, count = 2),
                     onClick = { onToggleFriendPlaying(friend, true) },
                     selected = friend.isPlaying,
+                    colors = SegmentedButtonDefaults.colors(
+                        activeContainerColor = MaterialTheme.colorScheme.primaryContainer
+                    ),
+                    icon ={},
                     label = {
                         Text(
                             text = stringResource(R.string.f_friend_playing_switch),
-                            style = MaterialTheme.typography.labelMedium
+                            style = MaterialTheme.typography.labelSmall
                         )
                     }
                 )
@@ -187,7 +192,7 @@ private fun FriendCard(
                     label = {
                         Text(
                             text = stringResource(R.string.f_friend_not_playing_switch),
-                            style = MaterialTheme.typography.labelMedium,
+                            style = MaterialTheme.typography.labelSmall,
 
                         )
                     }

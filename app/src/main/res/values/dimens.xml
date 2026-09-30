@@ -9,4 +9,5 @@
 
     <!--Other-->
     <dimen name="min_height_team_members_column">64dp</dimen>
+    <dimen name="fab_content_bottom_padding">80dp</dimen>
 </resources>

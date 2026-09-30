@@ -4,15 +4,13 @@ import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -106,7 +104,7 @@ private fun TeamsScreenContent(
 
     setTeamToEdit : (TeamEntity) -> Unit,
     setTeamToAddMembers : (TeamEntity) -> Unit
-){
+) {
     Scaffold(
         topBar = { TransparentTopAppVBar(R.string.t_title_teams_screen) },
         containerColor = Color.Transparent,
@@ -114,63 +112,65 @@ private fun TeamsScreenContent(
         modifier = modifier
     ) { innerPadding ->
 
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(1),
+        Box(
             modifier = Modifier
                 .padding(innerPadding)
+                .fillMaxSize()
         ) {
-
-            items(
-                items = teamUiState.teamsWithFriends,
-                key = { it.teamEntity.id }
+            LazyColumn(
+                contentPadding = PaddingValues(bottom = dimensionResource(R.dimen.fab_content_bottom_padding)),
             ) {
-                TeamCard(
-                    teamEntity = it.teamEntity,
-                    teamMembers = it.friends,
-                    onDeleteTeam = onDeleteTeam,
-                    onShowAddFriendsDialog = onShowAddFriendsDialog,
-                    onRemoveFriendFromTeam = onRemoveFriendFromTeam,
-                    setTeamToEdit = setTeamToEdit,
-                    setTeamToAddMembers = setTeamToAddMembers,
-                    onShowEditTeamDialog = onShowEditTeamDialog
-                )
-            }
-
-        }
-
-        if(teamUiState.dialogState.displayAddFriendDialog){
-            teamUiState.dialogState.teamToAddMembers?.let { team ->
-                AddTeamMembersDialog(
-                    teamEntity = team,
-                    friendListWithoutTeam = teamUiState.unassignedFriends,
-                    onConfirm = { teamId, friendIds -> onAddFriendsToTeam(teamId, friendIds) },
-                    onCancel = { onHideAddFriendsDialog() }
-                )
+                items(
+                    items = teamUiState.teamsWithFriends,
+                    key = { it.teamEntity.id }
+                ) {
+                    TeamCard(
+                        teamEntity = it.teamEntity,
+                        teamMembers = it.friends,
+                        onDeleteTeam = onDeleteTeam,
+                        onShowAddFriendsDialog = onShowAddFriendsDialog,
+                        onRemoveFriendFromTeam = onRemoveFriendFromTeam,
+                        setTeamToEdit = setTeamToEdit,
+                        setTeamToAddMembers = setTeamToAddMembers,
+                        onShowEditTeamDialog = onShowEditTeamDialog
+                    )
+                }
             }
         }
+    }
 
-        if (teamUiState.dialogState.displayAddTeamDialog) {
-            InputTextDialog(
-                initialText = "",
-                textFieldLabelResId = R.string.t_label_add_team_text_field,
-                onConfirm = { newTeamName ->
-                    onAddTeam(TeamEntity(name = newTeamName))
-                },
-                onDismiss = {onHideAddTeamDialog()}
+    if (teamUiState.dialogState.displayAddFriendDialog) {
+        teamUiState.dialogState.teamToAddMembers?.let { team ->
+            AddTeamMembersDialog(
+                teamEntity = team,
+                friendListWithoutTeam = teamUiState.unassignedFriends,
+                onConfirm = { teamId, friendIds -> onAddFriendsToTeam(teamId, friendIds) },
+                onCancel = { onHideAddFriendsDialog() }
             )
         }
+    }
 
-        if(teamUiState.dialogState.displayEditTeamDialog) {
-            teamUiState.dialogState.teamToEdit?.let { team ->
-                InputTextDialog(
-                    initialText = team.name,
-                    textFieldLabelResId = R.string.t_label_add_team_text_field,
-                    onConfirm = { newTeamName ->
-                        onEditTeam(team.copy(name = newTeamName))
-                    },
-                    onDismiss = { onHideEditTeamDialog() }
-                )
-            }
+    if (teamUiState.dialogState.displayAddTeamDialog) {
+        InputTextDialog(
+            initialText = "",
+            textFieldLabelResId = R.string.t_label_add_team_text_field,
+            onConfirm = { newTeamName ->
+                onAddTeam(TeamEntity(name = newTeamName))
+            },
+            onDismiss = { onHideAddTeamDialog() }
+        )
+    }
+
+    if (teamUiState.dialogState.displayEditTeamDialog) {
+        teamUiState.dialogState.teamToEdit?.let { team ->
+            InputTextDialog(
+                initialText = team.name,
+                textFieldLabelResId = R.string.t_label_add_team_text_field,
+                onConfirm = { newTeamName ->
+                    onEditTeam(team.copy(name = newTeamName))
+                },
+                onDismiss = { onHideEditTeamDialog() }
+            )
         }
     }
 }
