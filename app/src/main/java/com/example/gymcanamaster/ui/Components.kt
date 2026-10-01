@@ -246,16 +246,17 @@ fun GameBottomNavigationBar(
                 .padding(dimensionResource(R.dimen.medium_padding))
         ) {
             OutlinedButton(
-                enabled = currentGameIndex != 0,
                 onClick = onNavigateToPreviousGame,
                 modifier = Modifier.weight(1.0f)
             ) {
                 Text(
-                    text = stringResource(R.string.g_previous_game_button_text),
+                    text = if(currentGameIndex == 0)
+                        stringResource(R.string.g_exit_game_button_text)
+                    else
+                        stringResource(R.string.g_previous_game_button_text),
                     style = MaterialTheme.typography.titleSmall
                 )
             }
-
 
             Text(
                 text = "${currentGameIndex + 1}/${maxGameIndex + 1}",
