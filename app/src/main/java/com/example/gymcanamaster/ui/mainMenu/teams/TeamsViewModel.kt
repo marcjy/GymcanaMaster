@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gymcanamaster.data.repository.friend.FriendRepository
 import com.example.gymcanamaster.data.repository.team.TeamRepository
-import com.example.gymcanamaster.data.room.TeamWithFriends
 import com.example.gymcanamaster.data.room.friend.FriendEntity
+import com.example.gymcanamaster.data.room.relations.TeamWithFriends
 import com.example.gymcanamaster.data.room.team.TeamEntity
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted

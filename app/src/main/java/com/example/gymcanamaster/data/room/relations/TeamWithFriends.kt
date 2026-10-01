@@ -1,4 +1,4 @@
-package com.example.gymcanamaster.data.room
+package com.example.gymcanamaster.data.room.relations
 
 import androidx.room.Embedded
 import androidx.room.Relation

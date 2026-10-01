@@ -1,6 +1,6 @@
 package com.example.gymcanamaster.data.repository.team
 
-import com.example.gymcanamaster.data.room.TeamWithFriends
+import com.example.gymcanamaster.data.room.relations.TeamWithFriends
 import com.example.gymcanamaster.data.room.team.TeamDao
 import com.example.gymcanamaster.data.room.team.TeamEntity
 import kotlinx.coroutines.flow.Flow

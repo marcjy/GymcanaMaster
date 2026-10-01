@@ -7,7 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
-import com.example.gymcanamaster.data.room.TeamWithFriends
+import com.example.gymcanamaster.data.room.relations.TeamWithFriends
 import kotlinx.coroutines.flow.Flow
 
 @Dao
