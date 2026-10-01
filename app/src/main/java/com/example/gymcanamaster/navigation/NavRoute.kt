@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 
 sealed interface NavRoute {
 
+    //region MainMenu
     @Serializable
     data object MainMenu : NavRoute
 
@@ -14,8 +15,15 @@ sealed interface NavRoute {
     @Serializable
     data object TeamsScreen : NavRoute
 
+    //endregion
 
-    //Games
+    //region Games
     @Serializable
     data class PhysicalGameScreen(val gameId : Int) : NavRoute
+
+    //endregion
+
+    //Finish Screen
+    @Serializable
+    data object FinishScreen : NavRoute
 }

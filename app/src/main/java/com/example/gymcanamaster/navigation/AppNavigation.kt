@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.example.gymcanamaster.ui.finishScreen.FinishScreen
 import com.example.gymcanamaster.ui.games.PhysicalGameScreen
 import com.example.gymcanamaster.ui.mainMenu.MainMenu
 import com.example.gymcanamaster.ui.mainMenu.friendsAndTeams.FriendsAndTeamsScreen
@@ -21,6 +22,7 @@ fun AppNavigation(
         startDestination = NavRoute.MainMenu,
         modifier = modifier
     ){
+        //region MainMenu
         composable<NavRoute.MainMenu>{
             MainMenu(
                 onNavigateToFriendsAndTeams = {
@@ -34,14 +36,15 @@ fun AppNavigation(
             FriendsAndTeamsScreen()
         }
 
-        //Physical games
+        //endregion
 
+        //region Games
+
+        //Physical games
         composable<NavRoute.PhysicalGameScreen> { backStackEntry ->
             val route = backStackEntry.toRoute<NavRoute.PhysicalGameScreen>()
             val targetGame = gymcanaGames.getOrNull(route.gameId)
-
-            if(targetGame == null)
-                throw Exception("When trying to navigate to a ${NavRoute.PhysicalGameScreen::class.simpleName}, the gameId is null")
+                ?: throw Exception("When trying to navigate to a ${NavRoute.PhysicalGameScreen::class.simpleName}, the gameId is null")
 
             PhysicalGameScreen(
                 gameTitleResId = targetGame.gameTitleResId,
@@ -51,12 +54,22 @@ fun AppNavigation(
                 onNavigateToPreviousGame = {
                     if(route.gameId > 0)
                         navigateToGame(navController, route.gameId - 1)
-                    else
+                    else {
                         navController.popBackStack()
+                        navController.navigate(NavRoute.MainMenu)
+                    }
                 },
                 onNavigateToNextGame ={ navigateToGame(navController, route.gameId + 1) }
             )
+        }
 
+        //endregion
+
+        //Finish Screen
+        composable<NavRoute.FinishScreen> {
+            FinishScreen(
+                onNavigateToExit =  {navController.navigate(NavRoute.MainMenu)}
+            )
         }
     }
 }
@@ -67,9 +80,10 @@ private fun navigateToGame(
 ){
     val targetGame = gymcanaGames.getOrNull(targetGameId)
 
-    if(targetGame == null)
-        //TODO:Navigate to finish screen
+    if(targetGame == null) {
+        navController.navigate(NavRoute.FinishScreen)
         return
+    }
 
     val targetGameRoute : NavRoute = when(targetGame.gameType){
         GameType.Physical -> NavRoute.PhysicalGameScreen(targetGameId)

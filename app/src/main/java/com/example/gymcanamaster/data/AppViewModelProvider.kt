@@ -5,6 +5,7 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.gymcanamaster.GymcanaMasterApplication
+import com.example.gymcanamaster.ui.finishScreen.FinishScreenViewModel
 import com.example.gymcanamaster.ui.games.PhysicalGameViewModel
 import com.example.gymcanamaster.ui.mainMenu.friends.FriendsViewModel
 import com.example.gymcanamaster.ui.mainMenu.teams.TeamsViewModel
@@ -29,6 +30,12 @@ object AppViewModelProvider {
                 friendRepository = gymcanaMasterApplication().container.friendRepository,
                 gymcanaRankingRepository = gymcanaMasterApplication().container.gymcanaRankingRepository,
                 teamRepository = gymcanaMasterApplication().container.teamRepository
+            )
+        }
+
+        initializer {
+            FinishScreenViewModel(
+                gymcanaRankingRepository = gymcanaMasterApplication().container.gymcanaRankingRepository,
             )
         }
     }
