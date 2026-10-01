@@ -25,15 +25,39 @@
     <string name="ft_label_friends">Friends</string>
     <string name="ft_label_teams">Teams</string>
     
-    <!--[G] Games -->
-    <string name="g_game_title_chopstick_transfer">Chopstick Transfer</string>
+    <!--[G] GAMES -->
     <string name="g_first_place_badge">🥇 1st</string>
     <string name="g_second_place_badge">🥈 2nd</string>
     <string name="g_third_place_badge">🥉 3rd</string>
 
     <string name="g_previous_game_button_text">Previous</string>
     <string name="g_next_game_button_text">Next</string>
+    <string name="g_exit_game_button_text">Exit</string>
     <string name="g_finish_game_button_text">Finish</string>
+
+
+    <string name="g_game_title_keep_up_ballon">Keep-Up Ballon</string>
+    <string name="g_game_title_race_running">Race: Running</string>
+    <string name="g_game_title_egg_race">Egg Race</string>
+    <string name="g_game_title_ballon_race">Ballon Race</string>
+    <string name="g_game_title_ballon_survival">Ballon Survival</string>
+    <string name="g_game_title_three_legged_race">3-Legged Race</string>
+    <string name="g_game_title_scarf_game">Scarf Game</string>
+    <string name="g_game_title_human_conveyor_belt">Human Conveyor Belt</string>
+    <string name="g_game_title_rock_paper_scissors_survival">Rock-Paper-Scissors Survival</string>
+    <string name="g_game_title_scavenger_hunt">Scavenger Hunt</string>
+    <string name="g_game_title_chopstick_transfer">Chopstick Transfer</string>
+    <string name="g_game_title_beer_pong">Beer Pong</string>
+    <string name="g_game_title_cup_pyramid">Cup Pyramid</string>
+
+    <string name="g_game_title_word_scramble">Word Scramble</string>
+    <string name="g_game_title_memory_tray">Memory Tray</string>
+    <string name="g_game_title_two_truths_one_lie">Two Truths, One Lie</string>
+    <string name="g_game_title_higher_or_lower">Higher or Lower</string>
+    <string name="g_game_title_music_lottery">Music Lottery</string>
+
+    <!--[F] FINISH SCREEN -->
+    <string name="f_title_finish_screen">🎉 Finish 🎊</string>
 
 
 </resources>
