@@ -13,4 +13,9 @@ sealed interface NavRoute {
     data object FriendsScreen : NavRoute
     @Serializable
     data object TeamsScreen : NavRoute
+
+
+    //Games
+    @Serializable
+    data class PhysicalGameScreen(val gameId : Int) : NavRoute
 }

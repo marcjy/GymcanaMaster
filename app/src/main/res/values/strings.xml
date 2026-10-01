@@ -24,5 +24,16 @@
     <!--[FT] FRIENDS AND TEAMS SCREEN -->
     <string name="ft_label_friends">Friends</string>
     <string name="ft_label_teams">Teams</string>
+    
+    <!--[G] Games -->
+    <string name="g_game_title_chopstick_transfer">Chopstick Transfer</string>
+    <string name="g_first_place_badge">🥇 1st</string>
+    <string name="g_second_place_badge">🥈 2nd</string>
+    <string name="g_third_place_badge">🥉 3rd</string>
+
+    <string name="g_previous_game_button_text">Previous</string>
+    <string name="g_next_game_button_text">Next</string>
+    <string name="g_finish_game_button_text">Finish</string>
+
 
 </resources>
